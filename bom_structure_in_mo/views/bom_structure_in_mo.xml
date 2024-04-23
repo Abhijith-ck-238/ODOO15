@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Bill of Materials -->
+    <record id="action_report_mrp_bom" model="ir.actions.client">
+        <field name="name">BoM Structure &amp; Cost</field>
+        <field name="tag">bom_structure_in_mo</field>
+        <field name="context"
+               eval="{'model': 'report.bom_structure_in_mo.bom_structure_in_mo'}"/>
+    </record>
+
+    <record id="bom_structure_in_mo" model="ir.ui.view">
+        <field name="name">bom.structure.in.mo</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reservation_state']"
+                   position="after">
+                <div class="oe_button_box" name="button_box">
+
+                    <button name="%(action_report_mrp_bom)d" type="action"
+                            class="oe_stat_button" icon="fa-bars"
+                            string="Bom Overview"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
